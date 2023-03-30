@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> GUESS THE NUMBER </title>
+<style>
+    *{
+        box-sizing:border-box;
+    }
+    body {
+        background-color: #07232550;
+    }
+    #histogram{
+        font-family:'Courier New', Courier, monospace;
+        text-align: center;
+        color: #020202;
+        text-transform: capitalize;
+        font-weight: 400;
+        background-image:url('images/bgs/beige_paper.png');
+        font-size: 2em;
+        width: 15em;
+        height:13em;
+         background-color:#86c0ab; 
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 60%;
+        left: 50%;
+        padding: 4.5em 1.3em;
+        border-radius: 0.8em;
+    
+    }
+    
+</style>
+<script type="text/javascript">
+  var number = generateNewValue();
+  
+  function generateNewValue()
+  {
+    return Math.floor(1000*Math.random())+1;
+  }
+  
+  function guess()
+  {
+    if (document.getElementById("playerNumber").value == undefined || document.getElementById("playerNumber").value.trim() == "" || isNaN(document.getElementById("playerNumber").value))
+    {
+      alert("PLEASE TYPE A NUMBER"); 
+      document.getElementById("playerNumber").focus();
+      return false;
+    }
+    if (parseInt(document.getElementById("playerNumber").value) > number)
+    {
+      alert("TOO HIGH \n\nTry again.");
+    }
+    else if (parseInt(document.getElementById("playerNumber").value) < number)
+    {
+      alert("TOO LOW \n\nTry again.");
+    }
+    else
+    {
+      alert("CONGRATULATIONS..!!\n\n YOU GUSSED CORRECT NUMBER...");
+      number = generateNewValue();
+    }
+    document.getElementById("playerNumber").value = "";
+    document.getElementById("playerNumber").focus();
+  }
+</script>
+</head>
+<body>
+  <h2 align="center" style="font-size:30px;color:rgba(127, 225, 243, 0.785);font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color:rgb(242, 247, 251);"><u> GUESS THE NUMBER BETWEEN 1 & 1000 </u>!!!  </h2>
+  <hr color="darkblue" size="7">
+  <div id="histogram">
+    <label for="playerNumber">Type a number</label><br><input style="height:3em;width:15em;" type="number" id="playerNumber" value="" size="10"><br><br>
+    <button onclick="guess()" style="color:rgba(183, 249, 76, 0.621);font-size:20px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;background:rgba(12, 12, 12, 0.196);border-radius: 0.4em;padding:2em;"> SUBMIT THE GUSSED NUMBER </button>
+    <!-- <div class="icons"></div> -->
+  </div>
+</body>
+</html>
